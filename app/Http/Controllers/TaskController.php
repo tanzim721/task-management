@@ -12,14 +12,14 @@ class TaskController extends Controller
     {
         // $tasks = Task::where('user_id', Auth::id())->get();
         // dd($tasks);
-        $query = Task::where('user_id', Auth::id());
+        $query = Task::where('user_id', Auth::id())->orderBy('due_date', 'desc');
         if(request()->has('status')) {
             $query->where('status', request('status'));
         }
         if(request()->has('sort')) {
             $query->orderBy('due_date', request('sort'));
         }
-        $tasks = $query->get();
+        $tasks = $query->paginate(10);
         // dd($tasks);
         return view('backend.task.view', compact('tasks'));
     }
