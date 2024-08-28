@@ -11,6 +11,7 @@ class TaskController extends Controller
     public function view()
     {
         // $tasks = Task::where('user_id', Auth::id())->get();
+        // dd($tasks);
         $query = Task::where('user_id', Auth::id());
         if(request()->has('status')) {
             $query->where('status', request('status'));
@@ -64,6 +65,16 @@ class TaskController extends Controller
     {
         $task->delete();
         return redirect()->route('task.view')->with('success', 'Task Deleted Successfully');
+    }
+    public function filter(Request $request)
+    {
+        $tasks = Task::where('user_id', Auth::id());
+        if ($request->status) {
+            $tasks->where('status', $request->status);
+        }
+        $tasks = $tasks->get();
+        // dd($tasks);
+        return view('backend.task.filter', compact('tasks'))->render();
     }
 
 }

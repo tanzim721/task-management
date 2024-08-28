@@ -18,14 +18,16 @@
                     <div class="card-body">
                         <h5 class="card-title">
                             Task List
-                            <div class="float-end">
-                                <select name="status" id="status" class="form-control w-auto d-inline" onchange="this.form.submit()">
-                                    <option value="">Select status</option>
-                                    <option {{ request('status') == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
-                                    <option {{ request('status') == 'in-progress' ? 'selected' : '' }} value="in-progress">In Progress</option>
-                                    <option {{ request('status') == 'completed' ? 'selected' : '' }} value="completed">Completed</option>
-                                </select>
-                                <a href="{{ route('task.add') }}" class="btn btn-success btn-sm" style="float:right"><i class="bi bi-plus-circle"></i> Add new</a>
+                            <div class="">
+                                <a href="{{ route('task.add') }}" class="btn btn-success btn-sm my-2 p-2" style=""><i class="bi bi-plus-circle"></i> Add new</a>
+                                <div class="float-end">
+                                    <select name="status" id="status" class="form-control w-auto d-inline">
+                                        <option value="">Select status</option>
+                                        <option {{ request('status') == 'pending' ? 'selected' : '' }} value="pending">Pending</option>
+                                        <option {{ request('status') == 'in_progress' ? 'selected' : '' }} value="in_progress">In Progress</option>
+                                        <option {{ request('status') == 'completed' ? 'selected' : '' }} value="completed">Completed</option>
+                                    </select>
+                                </div>
                             </div>
                         </h5>
                         <!-- Table with stripped rows -->
@@ -86,4 +88,20 @@
 @endsection
 
 @section('script')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#status').change(function() {
+            var status = $(this).val();
+            $.ajax({
+                url: "{{ route('task.filter') }}",
+                method: 'GET',
+                data: { status: status },
+                success: function(data) {
+                    $('tbody').html(data);
+                }
+            });
+        });
+    });
+</script>
 @endsection

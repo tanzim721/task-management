@@ -27,4 +27,5 @@ Route::prefix('/task')->name('task.')->group(function () {
     Route::get('/edit/{task}', [TaskController::class, 'edit'])->name('edit');
     Route::post('/update/{task}', [TaskController::class, 'update'])->name('update');
     Route::get('/delete/{task}', [TaskController::class, 'delete'])->name('delete');
+    Route::get('/filter', [TaskController::class, 'filter'])->name('filter');
 });

@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <h5 class="card-title">
                             Task Add
-                            <a class="btn btn-success btn-sm" href="{{route('task.view')}}" style="float:right;"><i class="bi bi-list"></i>Task list</a>
+                            <a class="btn btn-success btn-sm p-2" href="{{route('task.view')}}" style="float:right;"><i class="bi bi-list"></i>Task list</a>
                         </h5>
                         <br>
                         <form class="g-3" action="{{ route('task.update', $task) }}" method="post" id="myForm" enctype="multipart/form-data">
