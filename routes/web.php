@@ -35,3 +35,5 @@ Route::post('/logout', function () {
 
 require __DIR__.'/auth.php';
 
+
+
