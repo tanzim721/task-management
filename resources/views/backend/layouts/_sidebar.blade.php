@@ -12,18 +12,22 @@
             <i class="bi bi-grid"></i>
             <span>Dashboard</span>
             </a>
-        </li><!-- End Dashboard Nav -->
-        <li class="nav-item has-treeview {{ ($prefix=='/user')?'menu-open': '' }}">
+        </li>
+        <li class="nav-item has-treeview {{ ($prefix=='/task')?'active': '' }}">
             <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-person"></i><span>User Task</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="charts-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="" class="nav-link">
+                    <a href="{{ route('task.view') }}" class="nav-link {{ ($route=='task.view')?'active': '' }}" >
                         <i class="bi bi-circle"></i><span>View Lists</span>
                     </a>
                 </li>
-
+                <li>
+                    <a href="{{ route('task.add') }}" class="nav-link {{ ($route=='task.add')?'active': '' }}" >
+                        <i class="bi bi-circle"></i><span>Add Task</span>
+                    </a>
+                </li>
             </ul>
         </li>
     </ul>

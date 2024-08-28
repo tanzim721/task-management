@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,3 +19,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::prefix('/task')->name('task.')->group(function () {
+    Route::get('/view', [TaskController::class, 'view'])->name('view');
+    Route::get('/add', [TaskController::class, 'add'])->name('add');
+    Route::post('/store', [TaskController::class, 'store'])->name('store');
+    Route::get('/edit/{task}', [TaskController::class, 'edit'])->name('edit');
+    Route::post('/update/{task}', [TaskController::class, 'update'])->name('update');
+    Route::get('/delete/{task}', [TaskController::class, 'delete'])->name('delete');
+});
