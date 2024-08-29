@@ -27,16 +27,26 @@
                                 <div class="col-6 mt-2">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" value="{{ $task->title }}"  name="title" class="form-control" id="title">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger mt-2">
+                                           {{ $errors->first('title') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-6 mt-2">
                                     <label for="status" class="form-label">Status</label>
                                     <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" id="status" name="status">
-                                        <option value="" {{ $task->status == '' ? 'selected' : '' }}>Select Status</option>
+                                    <select class="form-select" id="status" name="status" required>
+                                        <option value="" {{ $task->status == '' ? 'selected' : '' }}>{{ $task->status }}</option>
                                         <option value="pending" {{ $task->status == 'pending' ? 'selected' : '' }}>Pending</option>
                                         <option value="in_progress" {{ $task->status == 'in_progress' ? 'selected' : '' }}>In Progress</option>
                                         <option value="completed" {{ $task->status == 'completed' ? 'selected' : '' }}>Completed</option>
                                     </select>
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger mt-2">
+                                           {{ $errors->first('status') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-6 mt-3">
                                     <label for="description" class="form-label">Description</label>
@@ -44,7 +54,7 @@
                                 </div>
                                 <div class="col-6 mt-3">
                                     <label for="due_date" class="form-label">Due Date</label>
-                                    <input type="date" id="datepicker" name="due_date" class="form-control" value="{{ $task->due_date }}">
+                                    <input type="date" id="datepicker" name="due_date" class="form-control" value="{{ $task->due_date }}" required>
                                 </div>
                             </div>
                             <div class="m-2 d-flex justify-content-end">

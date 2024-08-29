@@ -27,15 +27,25 @@
                                 <div class="col-6 mt-2">
                                     <label for="title" class="form-label">Title</label>
                                     <input type="text" value=""  name="title" class="form-control" id="title">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger mt-2">
+                                           {{ $errors->first('title') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-6 mt-2">
                                     <label for="status" class="form-label">Status</label>
-                                    <select class="form-select" id="status" name="status">
+                                    <select class="form-select" id="status" name="status" required>
                                         <option value="" selected>Select Status</option>
                                         <option value="pending" @if(old('status') == 'pending') selected @endif>Pending</option>
                                         <option value="in_progress" @if(old('status') == 'in_progress') selected @endif>In Progress</option>
                                         <option value="completed" @if(old('status') == 'completed') selected @endif>Completed</option>
                                     </select>
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger mt-2">
+                                           {{ $errors->first('status') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-6 mt-3">
                                     <label for="description" class="form-label">Description</label>
@@ -43,7 +53,7 @@
                                 </div>
                                 <div class="col-6 mt-3">
                                     <label for="due_date" class="form-label">Due Date</label>
-                                    <input type="date" id="datepicker" name="due_date" class="form-control">
+                                    <input type="date" id="datepicker" name="due_date" class="form-control" required>
                                 </div>
                             </div>
                             <div class="m-2 d-flex justify-content-end">
